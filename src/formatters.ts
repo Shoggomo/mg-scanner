@@ -1,24 +1,23 @@
 import {marktguru} from "marktguru/src/@types/marktguru.js";
 import {SearchResult} from "./types.js";
 
+
 const formatDate = (dateString: string) => {
-    return (new Date(dateString)).toLocaleString("de-DE", {dateStyle: "short"})
+    return (new Date(dateString)).toLocaleString("de-DE", {day: "2-digit", month: "2-digit"})
 }
 
 function formatPrice(price: number) {
     return `${String(price).replace(".", ",")}€`
 }
 
-function formatOffer(offer: marktguru.Offer) {
-    const {advertisers, validityDates, price, brand, product} = offer
-    return `${advertisers[0].name}: ${brand.name} ${product.name} ${formatPrice(price)} (${formatDate(validityDates[0].from)} - ${formatDate(validityDates[0].to)})`
-}
-
-export function formatOffers(term: string, offers: marktguru.Offer[]) {
-    return `${term}:\n${offers.map(formatOffer).join("\n")}\n`
+function formatOffers(term: string, offers: marktguru.Offer[]) {
+    return `<pre>${term}:
+    ${offers.reduce((p, o) => p +
+        `${o.advertisers[0].name.padEnd(12)} ${(o.brand.name + " " + o.product.name).padEnd(18)} ${formatPrice(o.price).padEnd(6)} (${formatDate(o.validityDates[0].from)}-${formatDate(o.validityDates[0].to)})
+    `, "")}</pre>`
 }
 
 export function formatSearchResults(searchResults: SearchResult[]) {
     const messages = searchResults.map(res => formatOffers(res.searchTerm, res.offers))
-    return messages.join()
+     return "<b>Product Search</b>:\n" + messages.join("\n")
 }

@@ -11,7 +11,7 @@ async function runSearchAndNotify(searchParams: Search, telegramBot: TelegramBot
     const searchResults = await runSearch(searchParams)
     if (searchResults.length > 0) {
         const message = formatSearchResults(searchResults)
-        return telegramBot.sendMessage(searchParams.telegramChatId, message)
+        return telegramBot.sendMessage(searchParams.telegramChatId, message, {parse_mode: "HTML"})
     }
 }
 
