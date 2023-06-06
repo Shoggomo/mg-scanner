@@ -3,6 +3,7 @@ services:
   app:
     # image: mg-scanner:latest  # local image
     image: shoggomo/mg-scanner:latest  # hub image
+    restart: unless-stopped
     environment:
       CONFIG: |-
         {
