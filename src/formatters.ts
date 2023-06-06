@@ -19,6 +19,6 @@ export function formatOffers(term: string, offers: marktguru.Offer[]) {
 }
 
 export function formatSearchResults(searchResults: SearchResult[]) {
-    const messages = searchResults.map(res => formatOffers(res.searchTerm, res.results))
+    const messages = searchResults.map(res => formatOffers(res.searchTerm, res.offers))
     return messages.join()
 }

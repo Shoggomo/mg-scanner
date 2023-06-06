@@ -2,7 +2,7 @@ import {marktguru} from "marktguru/src/@types/marktguru.js";
 
 export interface SearchResult {
     searchTerm: string
-    results: marktguru.Offer[]
+    offers: marktguru.Offer[]
 }
 
 export interface Search {
@@ -12,6 +12,7 @@ export interface Search {
 }
 
 export interface Config {
+    waitTimeMs: number
     telegramToken: string
     searches: Search[]
 }
