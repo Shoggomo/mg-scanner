@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  app:
+    # image: mg-scanner:latest  # local image
+    image: shoggomo/mg-scanner:latest  # hub image
+    environment:
+      CONFIG: |-
+        {
+         "schedule": "0 0 11 * * *",
+         "telegramToken": "654654:ASDFDFGH",
+         "searches": [
+           {
+             "telegramChatId": "654987",
+             "zipCode": 12345,
+             "searchTerms": [ "Milch", "Cola" ]
+           }
+         ]
+        }
