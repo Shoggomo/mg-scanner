@@ -12,7 +12,7 @@ export interface Search {
 }
 
 export interface Config {
-    waitTimeMs: number
+    schedule: string
     telegramToken: string
     searches: Search[]
 }
