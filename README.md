@@ -10,7 +10,7 @@ You need to setup a telegram bot beforehand and acquire its token.
 
 Afterwards, create an `.env` file by copying `.env.example`, removing the `.example` and filling it out.
 
-Run with `npm start`.
+Run with `npm start` or use the provided `Docker file`.
 
 ## Development
 
