@@ -1,6 +1,12 @@
-FROM node:lts-alpine3.18
+# Build Stage
+FROM node:18-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm ci --only=production
 COPY . .
-CMD [ "npm", "start" ]
+
+# Production Stage
+FROM node:18-alpine
+WORKDIR /app
+COPY --from=builder /app /app
+CMD ["npm", "start"]
